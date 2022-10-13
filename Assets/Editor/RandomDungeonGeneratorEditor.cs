@@ -20,5 +20,9 @@ public class RandomDungeonGeneratorEditor : Editor
         {
             generator.GenerateDungeon();
         }
+        if (GUILayout.Button("Clear"))
+        {
+            generator.ClearTilemap();
+        }
     }
 }
