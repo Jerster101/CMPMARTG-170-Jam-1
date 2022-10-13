@@ -11,12 +11,12 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Pacman
+  - Ghost
+  - Pellet
+  - Fruit
+  - Obstacle
+  - Node
   - 
   - 
   - 
