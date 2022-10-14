@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Apple Tile
   m_EditorClassIdentifier: 
   m_DefaultSprite: {fileID: 21300000, guid: f6a7525dab8dc9c40a106cf6fa2d1dd8, type: 3}
-  m_DefaultGameObject: {fileID: 6776579590514952359, guid: 643eeda92c9824048b0b3894c7fd0d6a, type: 3}
-  m_DefaultColliderType: 2
+  m_DefaultGameObject: {fileID: 6003191573007741156, guid: 4aa3faa2cfd4a2d4c90068bedfb8e33c, type: 3}
+  m_DefaultColliderType: 0
   m_TilingRules: []

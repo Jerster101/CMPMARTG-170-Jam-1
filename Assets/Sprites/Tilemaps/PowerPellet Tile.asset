@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: PowerPellet Tile
   m_EditorClassIdentifier: 
   m_DefaultSprite: {fileID: 21300000, guid: 2956bae4a73e91f4e801a0eb8d619eff, type: 3}
-  m_DefaultGameObject: {fileID: 562292744261870093, guid: 4271d78309ca7a94694d5849d9355291, type: 3}
-  m_DefaultColliderType: 2
+  m_DefaultGameObject: {fileID: 765798977527693739, guid: af6b120e0459515419fe92a47de55c69, type: 3}
+  m_DefaultColliderType: 0
   m_TilingRules: []
