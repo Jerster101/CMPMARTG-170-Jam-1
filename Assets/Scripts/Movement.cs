@@ -32,6 +32,7 @@ public class Movement : MonoBehaviour
         this.nextDirection = Vector2.zero;
         this.transform.position = this.startingPosition;
         this.rigidbody.isKinematic = false;
+        this.rigidbody.freezeRotation = true;
         this.enabled = true;
     }
 

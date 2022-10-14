@@ -43,18 +43,18 @@ public class GameManager : MonoBehaviour
 
     private void ResetState()
     {
+        this.pacman.ResetState();
         for (int i = 0; i < this.ghosts.Length; i++)
         {
             this.ghosts[i].ResetState();
         }
-        this.pacman.gameObject.SetActive(true);
     }
 
     private void GameOver()
     {
         for (int i = 0; i < this.ghosts.Length; i++)
         {
-            this.ghosts[i].ResetState();
+            this.ghosts[i].gameObject.SetActive(false);
         }
         this.pacman.gameObject.SetActive(false);
     }
@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
     public void GhostEaten(Ghost ghost)
     {
         SetScore(this.score + ghost.points);
+        ghost.ResetState();
     }
 
     public void PacmanEaten()
