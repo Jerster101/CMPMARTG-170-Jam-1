@@ -3,25 +3,25 @@ using UnityEngine;
 public class GhostRun : GhostBehaviour
 {
 
-    public Animator animator { get; private set; }
+    //public Animator animator { get; private set; }
 
     public bool eaten { get; private set; }
 
-    private void Awake()
+    /*private void Awake()
     {
         this.animator = this.gameObject.GetComponent<Animator>();
-    }
+    }*/
 
     public override void Enable(float duration)
     {
         base.Enable(duration);
-        animator.runtimeAnimatorController = Resources.Load("PowerUpGhost") as RuntimeAnimatorController;
+        //animator.runtimeAnimatorController = Resources.Load("PowerUpGhost") as RuntimeAnimatorController;
     }
 
     public override void Disable()
     {
         base.Disable();
-        if (this.gameObject.name == "Blinky")
+       /* if (this.gameObject.name == "Blinky")
         {
             animator.runtimeAnimatorController = Resources.Load("Blinky") as RuntimeAnimatorController;
         }
@@ -36,7 +36,7 @@ public class GhostRun : GhostBehaviour
         else if (this.gameObject.name == "Pinky")
         {
             animator.runtimeAnimatorController = Resources.Load("Pinky") as RuntimeAnimatorController;
-        }
+        }*/
     }
 
     private void Eaten()
@@ -82,7 +82,7 @@ public class GhostRun : GhostBehaviour
             {
                 Vector3 newPosition = this.transform.position + new Vector3(availableDirections.x, availableDirections.y, 0.0f);
                 float distance = (this.ghost.target.position - newPosition).sqrMagnitude;
-                if (distance > maxDistance && availableDirections != -this.ghost.movement.direction)
+                if (distance > maxDistance)
                 {
                     direction = availableDirections;
                     maxDistance = distance;

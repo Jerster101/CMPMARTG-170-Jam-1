@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public Ghost[] ghosts;
     public Pacman pacman;
-    public Transform pellets;
+    //public Transform pellets;
     public Transform fruits;
 
     public int score { get; private set; }
