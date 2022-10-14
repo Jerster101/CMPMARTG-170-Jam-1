@@ -3,43 +3,93 @@ using UnityEngine;
 public class GhostRun : GhostBehaviour
 {
 
-    private Animator _animator;
+    public Animator animator { get; private set; }
+
+    public bool eaten { get; private set; }
 
     private void Awake()
     {
-        _animator = GetComponent<Animator>();
+        this.animator = this.gameObject.GetComponent<Animator>();
     }
-
-    public void SetAnimations(AnimatorOverrideController overrideController)
-    {
-        _animator.runtimeAnimatorController = overrideController;
-    }
-
-    public bool eaten { get; private set; }
 
     public override void Enable(float duration)
     {
         base.Enable(duration);
-        //change to powerup animation
-        //Invoke(nameof(Flash), duration / 2.0f);
+        animator.runtimeAnimatorController = Resources.Load("PowerUpGhost") as RuntimeAnimatorController;
     }
 
-    private overrride void Disable()
+    public override void Disable()
     {
         base.Disable();
-        //change back to normal
+        if (this.gameObject.name == "Blinky")
+        {
+            animator.runtimeAnimatorController = Resources.Load("Blinky") as RuntimeAnimatorController;
+        }
+        else if (this.gameObject.name == "Inky")
+        {
+            animator.runtimeAnimatorController = Resources.Load("Inky") as RuntimeAnimatorController;
+        }
+        else if (this.gameObject.name == "Clyde")
+        {
+            animator.runtimeAnimatorController = Resources.Load("Clyde") as RuntimeAnimatorController;
+        }
+        else if (this.gameObject.name == "Pinky")
+        {
+            animator.runtimeAnimatorController = Resources.Load("Pinky") as RuntimeAnimatorController;
+        }
     }
 
-    private void Flash()
+    private void Eaten()
     {
-        if (!this.eaten)
-        {
-        //flash between blue and white powerup
-        }
+        this.eaten = true;
+        this.ghost.transform.position = this.ghost.startpos;
+        Disable();
     }
 
     private void OnEnable()
     {
-        
+        this.ghost.movement.speedMultiplier = 0.5f;
+        this.eaten = false;
+    }
+
+    private void OnDisable()
+    {
+        this.ghost.movement.speedMultiplier = 1.0f;
+        this.eaten = false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Pacman"))
+        {
+            if (this.enabled)
+            {
+                Eaten();
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Node node = other.GetComponent<Node>();
+
+        if (node != null && this.enabled)
+        {
+            Vector2 direction = Vector2.zero;
+            float maxDistance = float.MinValue;
+
+            foreach (Vector2 availableDirections in node.availableDirections)
+            {
+                Vector3 newPosition = this.transform.position + new Vector3(availableDirections.x, availableDirections.y, 0.0f);
+                float distance = (this.ghost.target.position - newPosition).sqrMagnitude;
+                if (distance > maxDistance && availableDirections != -this.ghost.movement.direction)
+                {
+                    direction = availableDirections;
+                    maxDistance = distance;
+                }
+            }
+
+            this.ghost.movement.SetDirection(direction);
+        }
     }
 }

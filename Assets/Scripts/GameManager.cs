@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public Ghost[] ghosts;
     public Pacman pacman;
-    //public Transform pellets;
+    public Transform pellets;
     public Transform fruits;
 
     public int score { get; private set; }
@@ -98,8 +98,13 @@ public class GameManager : MonoBehaviour
     }
 
     public void PowerPelletEaten(PowerPellet pellet){
+        for (int i = 0; i < this.ghosts.Length; i++)
+        {
+            this.ghosts[i].run.Enable(pellet.duration);
+        }
+
         FruitEaten(pellet);
-        //change ghost state
+        
     }
 
     private bool RemainingFruit(){

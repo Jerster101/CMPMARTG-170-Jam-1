@@ -8,6 +8,7 @@ public class Ghost : MonoBehaviour
     public GhostRun run { get; private set; }
     public GhostBehaviour initialBehaviour;
     public Transform target;
+    public Vector3 startpos = Vector3.zero;
     public int points = 100;
 
     private void Awake()
@@ -21,6 +22,7 @@ public class Ghost : MonoBehaviour
     private void Start()
     {
         ResetState();
+        this.startpos = this.transform.position;
     }
 
     public void ResetState()
