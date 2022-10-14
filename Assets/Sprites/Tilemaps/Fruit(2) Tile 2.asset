@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
   m_Name: Fruit(2) Tile 2
   m_EditorClassIdentifier: 
-  m_DefaultSprite: {fileID: 0}
-  m_DefaultGameObject: {fileID: 6038693270401177812, guid: d55949f690dc80a48837c713fd96c5dd, type: 3}
+  m_DefaultSprite: {fileID: 21300000, guid: edb9f70dffe8b114fb159dfb3b718abd, type: 3}
+  m_DefaultGameObject: {fileID: 3698430280459714974, guid: 70e7ba7105f82804a910fd478a675571, type: 3}
   m_DefaultColliderType: 0
   m_TilingRules: []
