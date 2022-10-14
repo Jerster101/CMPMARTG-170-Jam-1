@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour
     public void PowerPelletEaten(PowerPellet pellet){
         for (int i = 0; i < this.ghosts.Length; i++)
         {
-            this.ghosts[i].run.Enable(pellet.duration);
+            ghosts[i].run.Enable(pellet.duration);
         }
 
         FruitEaten(pellet);

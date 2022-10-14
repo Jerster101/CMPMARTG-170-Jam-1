@@ -4,6 +4,7 @@ public class GhostRun : GhostBehaviour
 {
 
     //public Animator animator { get; private set; }
+    public float death = 5.0f;
 
     public bool eaten { get; private set; }
 
@@ -43,7 +44,7 @@ public class GhostRun : GhostBehaviour
     {
         this.eaten = true;
         this.ghost.transform.position = this.ghost.startpos;
-        Disable();
+        Invoke(nameof(Disable), this.death);
     }
 
     private void OnEnable()
