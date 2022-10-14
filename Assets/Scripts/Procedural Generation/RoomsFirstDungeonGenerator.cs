@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RoomsFirstDungeonGenerator : SimpleRandomWalkGenerator
 {
-    [SerializeField]
+   /* [SerializeField]
     private int minRoomWidth = 4, minRoomHeight = 4;
     [SerializeField]
     private int dungeonWidth = 20, dungeonHeight = 20;
@@ -59,14 +59,14 @@ public class RoomsFirstDungeonGenerator : SimpleRandomWalkGenerator
 
     private HashSet<Vector2Int> CreateCorridor(Vector2Int currentRoomCenter, Vector2Int closest)
     {
-        HashSet<Vector2Int corridor = new HashSet<Vector2Int>();
+        HashSet<Vector2Int> corridor = new HashSet<Vector2Int>();
         var position = currentRoomCenter;
         corridor.Add(position);
         while (position.y != closest.y)
         {
             if(closest.y > position.y)
             {
-                position += Vector2Int.up
+                position += Vector2Int.up;
             }
             else if (closest.y < position.y)
             {
@@ -76,7 +76,7 @@ public class RoomsFirstDungeonGenerator : SimpleRandomWalkGenerator
         }
         while (position.x != closest.x)
         {
-            if (closest.x > position.x)
+            //if (closest.x > position.x) ;
         }
     }
 
@@ -111,5 +111,5 @@ public class RoomsFirstDungeonGenerator : SimpleRandomWalkGenerator
             }
         }
         return floor;
-    }
+    }*/
 }
