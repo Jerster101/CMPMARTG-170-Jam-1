@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RoomsFirstDungeonGenerator : SimpleRandomWalkGenerator
 {
-   /* [SerializeField]
+    [SerializeField]
     private int minRoomWidth = 4, minRoomHeight = 4;
     [SerializeField]
     private int dungeonWidth = 20, dungeonHeight = 20;
@@ -40,11 +40,11 @@ public class RoomsFirstDungeonGenerator : SimpleRandomWalkGenerator
         WallGenerator.CreateWalls(floor, tilemapVisualizer);
     }
 
-    private HashSet<Vector2Int> Connectrooms(List<Vector2Int> roomCenters)
+    private HashSet<Vector2Int> ConnectRooms(List<Vector2Int> roomCenters)
     {
-        HashSet<Vector2Int> corridor = new HashSet<Vector2Int>();
-        var currentRoomCenter = roomCenters[Random.Range(0, roomcenters.Count)];
-        roomsCenters.Remove(currentRoomCenter);
+        HashSet<Vector2Int> corridors = new HashSet<Vector2Int>();
+        var currentRoomCenter = roomCenters[Random.Range(0, roomCenters.Count)];
+        roomCenters.Remove(currentRoomCenter);
 
         while (roomCenters.Count > 0)
         {
@@ -52,7 +52,7 @@ public class RoomsFirstDungeonGenerator : SimpleRandomWalkGenerator
             roomCenters.Remove(closest);
             HashSet<Vector2Int> newCorridor = CreateCorridor(currentRoomCenter, closest);
             currentRoomCenter = closest;
-            corridors.UnionWith(newcorridor);
+            corridors.UnionWith(newCorridor);
         }
         return corridors;
     }
@@ -72,18 +72,26 @@ public class RoomsFirstDungeonGenerator : SimpleRandomWalkGenerator
             {
                 position += Vector2Int.down;
             }
-            corridor.Add(Position);
+            corridor.Add(position);
         }
         while (position.x != closest.x)
         {
-            //if (closest.x > position.x) ;
+            if (closest.x > position.x)
+            {
+                position += Vector2Int.right;
+            } else if (closest.x < position.x)
+            {
+                position += Vector2Int.left;
+            }
+            corridor.Add(position);
         }
+        return corridor;
     }
 
     private Vector2Int FindClosestPointTo(Vector2Int currentRoomCenter, List<Vector2Int> roomCenters)
     {
         Vector2Int closest = Vector2Int.zero;
-        float length = float.MaxValue;
+        float distance = float.MaxValue;
         foreach (var position in roomCenters)
         {
             float currentDistance = Vector2.Distance(position, currentRoomCenter);
@@ -111,5 +119,5 @@ public class RoomsFirstDungeonGenerator : SimpleRandomWalkGenerator
             }
         }
         return floor;
-    }*/
+    }
 }
