@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < this.ghosts.Length; i++)
         {
-            this.ghosts[i].gameObject.SetActive(true);
+            this.ghosts[i].ResetState();
         }
         this.pacman.gameObject.SetActive(true);
     }
@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < this.ghosts.Length; i++)
         {
-            this.ghosts[i].gameObject.SetActive(false);
+            this.ghosts[i].ResetState();
         }
         this.pacman.gameObject.SetActive(false);
     }
@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
         SetScore(this.score + ghost.points);
     }
 
-    public void PacmanEaten(Pacman pacman)
+    public void PacmanEaten()
     {
         this.pacman.gameObject.SetActive(false);
         SetLives(this.lives - 1);
