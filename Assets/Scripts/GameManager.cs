@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
 
     private void NewFloor()
     {
-        foreach (Transform fruit in this.fruits)
+        foreach (Transform fruit in fruits)
         {
             fruit.gameObject.SetActive(true);
         }
@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour
     }
 
     private bool RemainingFruit(){
-        foreach (Transform fruit in this.fruits){
+        foreach (Transform fruit in fruits){
             if(fruit.gameObject.activeSelf){
                 return true;
             }
