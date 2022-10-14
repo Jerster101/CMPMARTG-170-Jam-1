@@ -6,8 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public Ghost[] ghosts;
     public Pacman pacman;
-    public Transform pellets;
-    public Transform fruit;
+    //public Transform pellets;
+    public Transform fruits;
 
     public int score { get; private set; }
     public int lives { get; private set; }
@@ -34,9 +34,9 @@ public class GameManager : MonoBehaviour
 
     private void NewFloor()
     {
-        foreach (Transform pellet in this.pellets)
+        foreach (Transform fruit in this.fruits)
         {
-            pellet.gameObject.SetActive(true);
+            fruit.gameObject.SetActive(true);
         }
         ResetState();
     }
@@ -87,4 +87,27 @@ public class GameManager : MonoBehaviour
             GameOver();
         }
     }
+    public void FruitEaten(Fruit fruit){
+        fruit.gameObject.SetActive(false);
+        SetScore(this.score + fruit.points);
+        if(!RemainingFruit()){
+            this.pacman.gameObject.SetActive(false);
+            Invoke(nameof(NewFloor), 3.0f);
+        }
+    }
+
+    public void PowerPelletEaten(PowerPellet pellet){
+        FruitEaten(pellet);
+        //change ghost state
+    }
+
+    private bool RemainingFruit(){
+        foreach (Transform fruit in this.fruits){
+            if(fruit.gameObject.activeSelf){
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
