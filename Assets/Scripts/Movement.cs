@@ -9,7 +9,7 @@ public class Movement : MonoBehaviour
     public Vector2 initialDirection;
     public LayerMask obstacleLayer;
 
-    public new Rigidbody2D rigidbody { get; private set; }
+    public Rigidbody2D rigidbody { get; private set; }
     public Vector2 direction { get; private set; }
     public Vector2 nextDirection { get; private set; }
     public Vector3 startingPosition { get; private set; }
