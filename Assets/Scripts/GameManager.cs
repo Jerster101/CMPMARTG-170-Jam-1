@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,9 +9,13 @@ public class GameManager : MonoBehaviour
     public Pacman pacman;
     //public Transform pellets;
     public Transform fruits;
+    public Text livesText;
+    public Text fruitsText;
+    public Text scoreText;
 
     public int score { get; private set; }
     public int lives { get; private set; }
+    public int nfruits { get; private set; }
 
     private void Start()
     {
@@ -62,11 +67,19 @@ public class GameManager : MonoBehaviour
     private void SetScore(int score)
     {
         this.score = score;
+        scoreText.text = score.ToString().PadLeft(2, '0');
     }
 
     private void SetLives(int lives)
     {
         this.lives = lives;
+        livesText.text = "x" + lives.ToString();
+    }
+
+    private void SetFruits(int nfruits)
+    {
+        this.nfruits = nfruits;
+        fruitsText.text = "x" + nfruits.ToString();
     }
 
     public void GhostEaten(Ghost ghost)
@@ -91,6 +104,10 @@ public class GameManager : MonoBehaviour
     public void FruitEaten(Fruit fruit){
         fruit.gameObject.SetActive(false);
         SetScore(this.score + fruit.points);
+        SetFruits(this.nfruits + 1);
+        if(this.nfruits == 3){
+            SetLives(this.lives + 1);
+        }
         if(!RemainingFruit()){
             this.pacman.gameObject.SetActive(false);
             Invoke(nameof(NewFloor), 3.0f);
