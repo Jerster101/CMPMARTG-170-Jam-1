@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class GhostRun : GhostBehaviour
 {
+    [SerializeField]
+    private Animator anim;
 
     //public Animator animator { get; private set; }
     public float death = 10.0f;
@@ -46,18 +48,21 @@ public class GhostRun : GhostBehaviour
         this.ghost.transform.position = this.ghost.startpos;
         this.gameObject.SetActive(false);
         Invoke(nameof(Disable), this.death);
+        anim.SetBool("PelletEaten", false);
     }
 
     private void OnEnable()
     {
         this.ghost.movement.speedMultiplier = 0.5f;
         this.eaten = false;
+        anim.SetBool("PelletEaten", true);
     }
 
     private void OnDisable()
     {
         this.ghost.movement.speedMultiplier = 1.0f;
         this.eaten = false;
+        anim.SetBool("PelletEaten", false);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

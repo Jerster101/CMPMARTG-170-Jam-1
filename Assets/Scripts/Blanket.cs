@@ -11,4 +11,11 @@ public class Blanket : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            collision.gameObject.GetComponent<Ghost>().transform.position = collision.gameObject.GetComponent<Ghost>().startpos;
+        }
+    }
 }

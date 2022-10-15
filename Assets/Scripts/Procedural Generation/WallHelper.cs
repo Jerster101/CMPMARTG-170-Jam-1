@@ -154,12 +154,19 @@ public static class WallHelper
 
     public static HashSet<int> L1 = new HashSet<int>
     {
-        0b000011111
+        0b00011111,
+        0b00011110,
+        0b00001110,
+        0b00001111
+
     };
 
     public static HashSet<int> L2 = new HashSet<int>
     {
-        0b01111100
+        0b01111000,
+        0b00111100,
+        0b01111100,
+        0b00111000
     };
 
 }
