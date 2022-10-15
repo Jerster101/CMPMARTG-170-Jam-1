@@ -21,8 +21,6 @@ public class Pacman : MonoBehaviour
         }
 
         float angle = Mathf.Atan2(this.movement.direction.y, this.movement.direction.x);
-        Debug.Log(angle);
-        Debug.Log(facingLeft);
         if (angle == Mathf.PI && !facingLeft)
         {
             transform.rotation = Quaternion.AngleAxis(0, Vector3.forward);
