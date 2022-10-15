@@ -4,6 +4,7 @@ using UnityEngine;
 public class Pacman : MonoBehaviour
 {
     public Movement movement { get; private set; }
+    private bool facingLeft = false;
 
     private void Awake(){
         this.movement = GetComponent<Movement>();
@@ -20,7 +21,30 @@ public class Pacman : MonoBehaviour
         }
 
         float angle = Mathf.Atan2(this.movement.direction.y, this.movement.direction.x);
-        this.transform.rotation = Quaternion.AngleAxis(angle * Mathf.Rad2Deg, Vector3.forward);
+        Debug.Log(angle);
+        Debug.Log(facingLeft);
+        if (angle == Mathf.PI && !facingLeft)
+        {
+            transform.rotation = Quaternion.AngleAxis(0, Vector3.forward);
+            Vector3 temp = transform.localScale;
+            temp.x *= -1;
+            transform.localScale = temp;
+            facingLeft = true;
+        }
+        else if (facingLeft && angle != Mathf.PI)
+        {
+            transform.rotation = Quaternion.AngleAxis(angle * Mathf.Rad2Deg, Vector3.forward);
+            Vector3 temp = transform.localScale;
+            temp.x *= -1;
+            transform.localScale = temp;
+            facingLeft = false;
+        }
+        else if (angle != Mathf.PI)
+        {
+            transform.rotation = Quaternion.AngleAxis(angle * Mathf.Rad2Deg, Vector3.forward);
+            facingLeft = false;
+        }
+            
     }
 
     public void ResetState()
