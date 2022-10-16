@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -65,6 +66,7 @@ public class GameManager : MonoBehaviour
             this.ghosts[i].gameObject.SetActive(false);
         }
         this.pacman.gameObject.SetActive(false);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void SetScore(int score)
@@ -88,9 +90,11 @@ public class GameManager : MonoBehaviour
     public void GhostEaten(Ghost ghost)
     {
         SetScore(this.score + ghost.points);
-        if(this.score >= bonus){
-            SetLives(this.lives + 1);
-            bonus += bonusInterval;
+        if(this.lives < 3){
+            if(this.score >= bonus){
+                SetLives(this.lives + 1);
+                bonus += bonusInterval;
+            }
         }
         ghost.ResetState();
     }
@@ -111,10 +115,6 @@ public class GameManager : MonoBehaviour
     public void FruitEaten(Fruit fruit){
         fruit.gameObject.SetActive(false);
         SetScore(this.score + fruit.points);
-        if(!RemainingFruit()){
-            this.pacman.gameObject.SetActive(false);
-            Invoke(nameof(NewFloor), 3.0f);
-        }
     }
 
     public void PowerPelletEaten(PowerPellet pellet){
@@ -130,13 +130,16 @@ public class GameManager : MonoBehaviour
         fruit.gameObject.SetActive(false);
         SetScore(this.score + fruit.points);
         SetFruits(this.nfruits + 1);
-        if(this.score >= bonus){
-            SetLives(this.lives + 1);
-            bonus += bonusInterval;
+         if(this.lives < 3){
+            if(this.score >= bonus){
+                SetLives(this.lives + 1);
+                bonus += bonusInterval;
+            }
         }
         if(!RemainingFruit()){
             this.pacman.gameObject.SetActive(false);
-            Invoke(nameof(NewFloor), 3.0f);
+            //Invoke(nameof(NewFloor), 3.0f);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
