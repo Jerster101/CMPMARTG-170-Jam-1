@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public Text fruitsText;
     public Text scoreText;
 
+    public int bonus = 600;
+    public int bonusInterval = 600;
     public int score { get; private set; }
     public int lives { get; private set; }
     public int nfruits { get; private set; }
@@ -107,10 +109,6 @@ public class GameManager : MonoBehaviour
     public void FruitEaten(Fruit fruit){
         fruit.gameObject.SetActive(false);
         SetScore(this.score + fruit.points);
-        SetFruits(this.nfruits + 1);
-        if(this.nfruits == 3){
-            SetLives(this.lives + 1);
-        }
         if(!RemainingFruit()){
             this.pacman.gameObject.SetActive(false);
             Invoke(nameof(NewFloor), 3.0f);
@@ -125,6 +123,27 @@ public class GameManager : MonoBehaviour
 
         FruitEaten(pellet);
         
+    }
+
+    public void EatFruit(Fruit fruit){
+        fruit.gameObject.SetActive(false);
+        SetScore(this.score + fruit.points);
+        SetFruits(this.nfruits + 1);
+        if(this.score >= bonus){
+            SetLives(this.lives + 1);
+            bonus += bonusInterval;
+        }
+        if(!RemainingFruit()){
+            this.pacman.gameObject.SetActive(false);
+            Invoke(nameof(NewFloor), 3.0f);
+        }
+    }
+
+    public void addLives(){
+        if(this.score >= this.bonus){
+            SetLives(this.lives + 1);
+            this.bonus += this.bonusInterval;
+        }
     }
 
     private bool RemainingFruit(){

@@ -254,8 +254,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _img: {fileID: 382335409}
-  _x: 0.01
-  _y: 0.01
+  _x: 0.005
+  _y: 0.005
 --- !u!1 &716633329
 GameObject:
   m_ObjectHideFlags: 0
