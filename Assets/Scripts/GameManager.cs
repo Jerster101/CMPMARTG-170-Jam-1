@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class GameManager : MonoBehaviour
     public int lives { get; private set; }
     public int nfruits { get; private set; }
 
+    public float ghostdeath = 5.0f;
+
     private void Start()
     {
         NewGame();
@@ -26,7 +29,7 @@ public class GameManager : MonoBehaviour
     {
         if (this.lives <= 0 && Input.anyKeyDown)
         {
-            NewGame();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
@@ -85,7 +88,7 @@ public class GameManager : MonoBehaviour
     public void GhostEaten(Ghost ghost)
     {
         SetScore(this.score + ghost.points);
-        ghost.ResetState();
+        ghost.Invoke(nameof(ResetState), this.ghostdeath);
     }
 
     public void PacmanEaten()

@@ -15,7 +15,14 @@ public class Blanket : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            collision.gameObject.GetComponent<Ghost>().transform.position = collision.gameObject.GetComponent<Ghost>().startpos;
+            collision.gameObject.GetComponent<Ghost>().ResetState();
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("GhostWall"))
+        {
+            Destroy(collision.gameObject);
         }
     }
 }

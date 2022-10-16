@@ -6,7 +6,6 @@ public class GhostRun : GhostBehaviour
     private Animator anim;
 
     //public Animator animator { get; private set; }
-    public float death = 10.0f;
 
     public bool eaten { get; private set; }
 
@@ -47,7 +46,7 @@ public class GhostRun : GhostBehaviour
         this.eaten = true;
         this.ghost.transform.position = this.ghost.startpos;
         this.gameObject.SetActive(false);
-        Invoke(nameof(Disable), this.death);
+        this.Disable();
         anim.SetBool("PelletEaten", false);
     }
 
