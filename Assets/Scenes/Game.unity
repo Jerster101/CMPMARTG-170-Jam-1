@@ -509,6 +509,8 @@ MonoBehaviour:
   livesText: {fileID: 1966114102}
   fruitsText: {fileID: 735342020}
   scoreText: {fileID: 639245931}
+  bonus: 600
+  bonusInterval: 600
   ghostdeath: 5
 --- !u!4 &301466567
 Transform:
@@ -7174,7 +7176,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1724611885
 Transform:
   m_ObjectHideFlags: 0
