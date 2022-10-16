@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public Ghost[] ghosts;
+    public float ghostdeathtimer = 5.0f;
     public Pacman pacman;
     //public Transform pellets;
     public Transform fruits;
@@ -29,7 +30,7 @@ public class GameManager : MonoBehaviour
     {
         if (this.lives <= 0 && Input.anyKeyDown)
         {
-            NewGame();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
@@ -66,7 +67,6 @@ public class GameManager : MonoBehaviour
             this.ghosts[i].gameObject.SetActive(false);
         }
         this.pacman.gameObject.SetActive(false);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void SetScore(int score)
@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
                 bonus += bonusInterval;
             }
         }
-        ghost.ResetState();
+        ghost.Invoke(nameof(ResetState), this.ghostdeathtimer);
     }
 
     public void PacmanEaten()
@@ -150,6 +150,10 @@ public class GameManager : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public void Exit(){
+        Application.Quit();
     }
 
 }
