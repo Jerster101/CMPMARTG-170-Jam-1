@@ -7,7 +7,7 @@ public class Fruit : MonoBehaviour
     public int points = 100;
 
     protected virtual void Eat(){
-        FindObjectOfType<GameManager>().EatFruit(this);
+        FindObjectOfType<GameManager>().eatFruit(this);
     }
 
     private void OnTriggerEnter2D(Collider2D other){

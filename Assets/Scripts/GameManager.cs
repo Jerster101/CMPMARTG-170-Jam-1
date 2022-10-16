@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,13 +13,11 @@ public class GameManager : MonoBehaviour
     public Text fruitsText;
     public Text scoreText;
 
-    public int bonus = 600;
-    public int bonusInterval = 600;
+    public int bonus;
+    const int bonusInterval = 600;
     public int score { get; private set; }
     public int lives { get; private set; }
     public int nfruits { get; private set; }
-
-    public float ghostdeath = 5.0f;
 
     private void Start()
     {
@@ -31,7 +28,7 @@ public class GameManager : MonoBehaviour
     {
         if (this.lives <= 0 && Input.anyKeyDown)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            NewGame();
         }
     }
 
@@ -40,6 +37,7 @@ public class GameManager : MonoBehaviour
         SetScore(0);
         SetLives(2);
         NewFloor();
+        bonus = bonusInterval;
     }
 
     private void NewFloor()
@@ -90,7 +88,11 @@ public class GameManager : MonoBehaviour
     public void GhostEaten(Ghost ghost)
     {
         SetScore(this.score + ghost.points);
-        ghost.Invoke(nameof(ResetState), this.ghostdeath);
+        if(this.score >= bonus){
+            SetLives(this.lives + 1);
+            bonus += bonusInterval;
+        }
+        ghost.ResetState();
     }
 
     public void PacmanEaten()
@@ -121,11 +123,10 @@ public class GameManager : MonoBehaviour
             ghosts[i].run.Enable(pellet.duration);
         }
 
-        FruitEaten(pellet);
-        
+        FruitEaten(pellet); 
     }
 
-    public void EatFruit(Fruit fruit){
+    public void eatFruit(Fruit fruit){
         fruit.gameObject.SetActive(false);
         SetScore(this.score + fruit.points);
         SetFruits(this.nfruits + 1);
@@ -136,13 +137,6 @@ public class GameManager : MonoBehaviour
         if(!RemainingFruit()){
             this.pacman.gameObject.SetActive(false);
             Invoke(nameof(NewFloor), 3.0f);
-        }
-    }
-
-    public void addLives(){
-        if(this.score >= this.bonus){
-            SetLives(this.lives + 1);
-            this.bonus += this.bonusInterval;
         }
     }
 
