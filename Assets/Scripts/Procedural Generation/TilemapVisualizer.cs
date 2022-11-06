@@ -12,7 +12,9 @@ public class TilemapVisualizer : MonoBehaviour
     private TileBase floorTile, wallTop, wallSideRight, wallSideLeft, wallBottom,
         wallInnerCornerDownLeft, wallInnerCornerDownRight,
         wallDiagonalCornerDownRight, wallDiagonalCornerDownLeft, wallDiagonalCornerUpRight, wallDiagonalCornerUpLeft,
-        L1, L2;
+        L1, L2,
+        U1, U2, U3, U4, II, II2, WallAll,
+        Mixed1, Mixed2, Mixed3, Mixed4, Mixed5, Mixed6, Mixed7, Mixed8;
 
     public void PaintFloorTiles(IEnumerable<Vector2Int> floorPositions)
     {
@@ -99,6 +101,74 @@ public class TilemapVisualizer : MonoBehaviour
         else if (WallHelper.L2.Contains(typeASInt))
         {
             tile = L2;
+        }
+        else if (WallHelper.U1.Contains(typeASInt))
+        {
+            tile = U1;
+        }
+        else if (WallHelper.U2.Contains(typeASInt))
+        {
+            tile = U2;
+        }
+        else if (WallHelper.U3.Contains(typeASInt))
+        {
+            tile = U3;
+        }
+        else if (WallHelper.U4.Contains(typeASInt))
+        {
+            tile = U4;
+        }
+        else if (WallHelper.II.Contains(typeASInt))
+        {
+            tile = II;
+        }
+        else if (WallHelper.II2.Contains(typeASInt))
+        {
+            tile = II2;
+        }
+        else if (WallHelper.WallAll.Contains(typeASInt))
+        {
+            tile = WallAll;
+        }
+
+        else if (WallHelper.Mixed1.Contains(typeASInt))
+        {
+            tile = Mixed1;
+        }
+
+        else if (WallHelper.Mixed2.Contains(typeASInt))
+        {
+            tile = Mixed2;
+        }
+
+        else if (WallHelper.Mixed3.Contains(typeASInt))
+        {
+            tile = Mixed3;
+        }
+
+        else if (WallHelper.Mixed4.Contains(typeASInt))
+        {
+            tile = Mixed4;
+        }
+
+        else if (WallHelper.Mixed5.Contains(typeASInt))
+        {
+            tile = Mixed5;
+        }
+
+        else if (WallHelper.Mixed6.Contains(typeASInt))
+        {
+            tile = Mixed6;
+        }
+
+        else if (WallHelper.Mixed7.Contains(typeASInt))
+        {
+            tile = Mixed7;
+        }
+
+        else if (WallHelper.Mixed8.Contains(typeASInt))
+        {
+            tile = Mixed8;
         }
 
         if (tile != null)

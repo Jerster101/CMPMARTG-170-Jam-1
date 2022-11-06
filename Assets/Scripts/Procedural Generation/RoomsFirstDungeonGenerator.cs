@@ -34,7 +34,13 @@ public class RoomsFirstDungeonGenerator : SimpleRandomWalkGenerator
         HashSet<Vector2Int> corridors = ConnectRooms(roomCenters);
         floor.UnionWith(corridors);
 
-        tilemapVisualizer.PaintFloorTiles(floor);
+        HashSet<Vector2Int> PosToRemove = RemoveFloor(floor, Direction2D.eightDirectionList);
+        foreach (var position in PosToRemove){
+            floor.Remove(position);
+        }
+
+
+
         WallGenerator.CreateWalls(floor, tilemapVisualizer);
     }
 
@@ -117,5 +123,21 @@ public class RoomsFirstDungeonGenerator : SimpleRandomWalkGenerator
             }
         }
         return floor;
+    }
+
+    private static HashSet<Vector2Int> RemoveFloor(HashSet<Vector2Int> floorPositions, List<Vector2Int> DirectionList) {
+        HashSet<Vector2Int> PosToRemove = new HashSet<Vector2Int>();;
+        foreach (var position in floorPositions) {
+            int nearFloor = 0;  
+            foreach (var direction in DirectionList) {
+                if (floorPositions.Contains(position + direction) == true){
+                    nearFloor++;
+                }
+            }
+            if (nearFloor > 7) {
+                PosToRemove.Add(position);
+            }
+        }
+        return PosToRemove;
     }
 }

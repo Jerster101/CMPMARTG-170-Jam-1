@@ -112,7 +112,7 @@ public static class Direction2D
         new Vector2Int(-1, 1) // UP-LEFT
     };
 
-    public static List<Vector2Int> eightDriectionList = new List<Vector2Int>
+    public static List<Vector2Int> eightDirectionList = new List<Vector2Int>
     {
         new Vector2Int(0,1), // UP
         new Vector2Int(1,1), // UP-RIGHT

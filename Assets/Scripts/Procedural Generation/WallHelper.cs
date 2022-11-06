@@ -40,10 +40,7 @@ public static class WallHelper
         0b11100001,
         0b10100000,
         0b01010001,
-        0b11010001,
         0b01100001,
-        0b11010000,
-        0b01110001,
         0b00010001,
         0b10110001,
         0b10100001,
@@ -62,7 +59,6 @@ public static class WallHelper
         0b10000111,
         0b10000010,
         0b01000101,
-        0b11000101,
         0b01000011,
         0b10000101,
         0b01000111,
@@ -113,8 +109,6 @@ public static class WallHelper
         0b00010100,
         0b11100100,
         0b10010011,
-        0b01110100,
-        0b00010111,
         0b00010110,
         0b00110100,
         0b00010101,
@@ -157,8 +151,9 @@ public static class WallHelper
         0b00011111,
         0b00011110,
         0b00001110,
-        0b00001111
-
+        0b00001111,
+        0b00001011,
+        0b00011010
     };
 
     public static HashSet<int> L2 = new HashSet<int>
@@ -166,7 +161,103 @@ public static class WallHelper
         0b01111000,
         0b00111100,
         0b01111100,
-        0b00111000
+        0b00111000,
+        0b01101100,
+        0b00101100,
+        0b01110010
     };
 
+    public static HashSet<int> U1 = new HashSet<int>
+    {
+        0b01111111,
+        0b00111111,
+        0b01111110
+    };
+
+    public static HashSet<int> U2 = new HashSet<int>
+    {
+        0b11011111,
+        0b11001111,
+        0b10011111
+    };
+
+    public static HashSet<int> U3 = new HashSet<int>
+    {
+        0b11110111,
+        0b11110011
+    };
+
+    public static HashSet<int> U4 = new HashSet<int>
+    {
+        0b11111101,
+        0b11111001
+    };
+
+    public static HashSet<int> II = new HashSet<int>
+    {
+        0b01110111,
+        0b00110111,
+        0b01110011,
+        0b01110110,
+        0b01100111
+    };
+
+    public static HashSet<int> II2 = new HashSet<int>
+    {
+        0b11011101,
+        0b11001100,
+        0b11011001,
+        0b10011101,
+        0b11011100,
+        0b11001101
+    };
+
+    public static HashSet<int> WallAll = new HashSet<int>
+    {
+        0b11111111
+    };
+
+    public static HashSet<int> Mixed1 = new HashSet<int>
+    {
+        0b11010000,
+        0b11010001
+    };
+
+    public static HashSet<int> Mixed2 = new HashSet<int>
+    {
+        0b11000101
+    };
+
+    public static HashSet<int> Mixed3 = new HashSet<int>
+    {
+        0b00011101
+    };
+
+    public static HashSet<int> Mixed4 = new HashSet<int>
+    {
+        0b01110100,
+        0b01100100
+    };
+
+    public static HashSet<int> Mixed5 = new HashSet<int>
+    {
+        0b01000110,
+        0b01000111
+
+    };
+
+    public static HashSet<int> Mixed6 = new HashSet<int>
+    {
+        0b01011100
+    };
+
+    public static HashSet<int> Mixed7 = new HashSet<int>
+    {
+        0b01110001
+    };
+
+    public static HashSet<int> Mixed8 = new HashSet<int>
+    {
+        0b00010111
+    };
 }
